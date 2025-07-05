@@ -4,13 +4,13 @@
 
 1. **Create a new repository on GitHub**:
    - Go to https://github.com/new
-   - Name: `firefighter-training-app`
+   - Name: `utbildningsportal`
    - Make it public or private (your choice)
    - Don't initialize with README (we already have one)
 
 2. **Push your local repository to GitHub**:
    ```bash
-   git remote add origin https://github.com/[your-username]/firefighter-training-app.git
+   git remote add origin https://github.com/ComplicitHen/utbildningsportal.git
    git branch -M main
    git push -u origin main
    ```
@@ -21,7 +21,7 @@
    - Go to https://app.netlify.com/
    - Click "New site from Git"
    - Choose "GitHub" and authorize Netlify
-   - Select your `firefighter-training-app` repository
+   - Select your `utbildningsportal` repository
 
 2. **Configure build settings**:
    - Build command: `npm run build`
