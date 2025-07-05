@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { DataService } from '../../services/dataService';
+import { FirebaseService } from '../../services/firebaseService';
 import { Quiz as QuizType, User, QuizResult } from '../../types';
 import QuizQuestion from './QuizQuestion';
 
@@ -46,7 +47,41 @@ const Quiz: React.FC<QuizProps> = ({ user }) => {
         if (nextQuestion < quiz!.questions.length) {
             setCurrentQuestionIndex(nextQuestion);
         } else {
-            setQuizCompleted(true);
+            // Quiz slutfört - spara resultat till Firebase
+            completeQuiz();
+        }
+    };
+
+    const completeQuiz = async () => {
+        setQuizCompleted(true);
+        
+        if (!quiz || !areaId || !quizId) return;
+
+        try {
+            // Spara quiz-resultat
+            const quizResult = {
+                id: `${user.id}_${quizId}_${Date.now()}`,
+                userId: user.id,
+                quizId: quizId,
+                score: score,
+                answers: quiz.questions.map((question, index) => ({
+                    questionId: question.id,
+                    selectedAnswer: selectedAnswers[index],
+                    correct: selectedAnswers[index] === question.correctAnswer
+                })),
+                completedAt: new Date(),
+                timeSpent: 0 // Du kan lägga till timer senare
+            };
+
+            await FirebaseService.saveQuizResult(quizResult);
+            
+            // Uppdatera användarens progress
+            const scorePercentage = Math.round((score / quiz.questions.length) * 100);
+            await FirebaseService.updateQuizCompletion(user.id, areaId, quizId, scorePercentage);
+            
+            console.log('Quiz results saved successfully');
+        } catch (error) {
+            console.error('Error saving quiz results:', error);
         }
     };
 

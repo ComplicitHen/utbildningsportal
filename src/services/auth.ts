@@ -5,16 +5,17 @@ import {
     onAuthStateChanged as firebaseOnAuthStateChanged,
     User
 } from 'firebase/auth';
-import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { doc, getDoc } from 'firebase/firestore';
 import { auth, db } from './firebase';
 import { User as AppUser } from '../types';
+import { FirebaseService } from './firebaseService';
 
 export const registerUser = async (email: string, password: string, displayName?: string) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         
-        // Skapa användarprofil i Firestore
+        // Skapa användarprofil i Firestore med nya service
         const userData: AppUser = {
             id: user.uid,
             email: user.email!,
@@ -24,7 +25,7 @@ export const registerUser = async (email: string, password: string, displayName?
             progress: {}
         };
         
-        await setDoc(doc(db, 'users', user.uid), userData);
+        await FirebaseService.createUserProfile(userData);
         return userData;
     } catch (error: any) {
         throw new Error(error.message);
@@ -50,7 +51,7 @@ export const loginUser = async (email: string, password: string) => {
                 completedQuizzes: [],
                 progress: {}
             };
-            await setDoc(doc(db, 'users', user.uid), userData);
+            await FirebaseService.createUserProfile(userData);
             return userData;
         }
     } catch (error: any) {

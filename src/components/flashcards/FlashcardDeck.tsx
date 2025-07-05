@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { DataService } from '../../services/dataService';
-import { FlashcardDeck as FlashcardDeckType, Flashcard } from '../../types';
+import { FirebaseService } from '../../services/firebaseService';
+import { FlashcardDeck as FlashcardDeckType, Flashcard, User } from '../../types';
 import FlashcardItem from './FlashcardItem';
 
-const FlashcardDeck: React.FC = () => {
+interface FlashcardDeckProps {
+    user: User;
+}
+
+const FlashcardDeck: React.FC<FlashcardDeckProps> = ({ user }) => {
     const { areaId, deckId } = useParams<{ areaId: string; deckId: string }>();
     const [deck, setDeck] = useState<FlashcardDeckType | null>(null);
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
@@ -23,6 +28,7 @@ const FlashcardDeck: React.FC = () => {
         if (deck && currentCardIndex < deck.cards.length - 1) {
             setCurrentCardIndex(currentCardIndex + 1);
             setShowAnswer(false);
+            updateProgress();
         }
     };
 
@@ -36,6 +42,24 @@ const FlashcardDeck: React.FC = () => {
     const handleFlip = () => {
         setShowAnswer(!showAnswer);
     };
+
+    const updateProgress = async () => {
+        if (!deck || !areaId || !deckId) return;
+        
+        try {
+            const progress = ((currentCardIndex + 1) / deck.cards.length) * 100;
+            await FirebaseService.updateFlashcardProgress(user.id, areaId, deckId, progress);
+        } catch (error) {
+            console.error('Error updating flashcard progress:', error);
+        }
+    };
+
+    // Uppdatera progress när användaren når slutet
+    useEffect(() => {
+        if (deck && currentCardIndex === deck.cards.length - 1 && showAnswer) {
+            updateProgress();
+        }
+    }, [currentCardIndex, showAnswer, deck]);
 
     if (loading) {
         return <div className="loading-screen">Laddar flashcards...</div>;

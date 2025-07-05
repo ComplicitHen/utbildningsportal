@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { DataService } from '../../services/dataService';
+import { FirebaseService } from '../../services/firebaseService';
 import { Scenario, User } from '../../types';
 import ScenarioItem from './ScenarioItem';
 
@@ -56,6 +57,21 @@ const ScenarioTraining: React.FC<ScenarioTrainingProps> = ({ user }) => {
 
     const currentStep = scenario.steps[currentStepIndex];
     const isCompleted = currentStepIndex >= scenario.steps.length;
+
+    // Spara scenario completion när det är slutfört
+    useEffect(() => {
+        if (isCompleted && scenario && areaId && scenarioId) {
+            const saveCompletion = async () => {
+                try {
+                    await FirebaseService.updateScenarioCompletion(user.id, areaId, scenarioId);
+                    console.log('Scenario completion saved');
+                } catch (error) {
+                    console.error('Error saving scenario completion:', error);
+                }
+            };
+            saveCompletion();
+        }
+    }, [isCompleted, scenario, areaId, scenarioId, user.id]);
 
     if (isCompleted) {
         return (

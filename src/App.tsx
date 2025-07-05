@@ -78,7 +78,7 @@ const App: React.FC = () => {
               />
               <Route 
                 path="/flashcards/:areaId/:deckId" 
-                element={authState.user ? <FlashcardDeck /> : <Navigate to="/login" />} 
+                element={authState.user ? <FlashcardDeck user={authState.user} /> : <Navigate to="/login" />} 
               />
               <Route 
                 path="/quiz/:areaId/:quizId" 
