@@ -1,110 +1,443 @@
 {
-  "brandkunskap": {
-    "id": "brandkunskap",
-    "name": "Brandkunskap",
-    "description": "Grundläggande kunskap om brand, förbränning och brandsläckning",
-    "category": "brandkunskap",
-    "icon": "🔥",
+  "fordonskännedom": {
+    "id": "fordonskännedom",
+    "name": "Fordonskännedom 6510",
+    "description": "Utrustning och inventering av brandbil 6510",
+    "category": "fordonskännedom",
+    "icon": "🚒",
     "flashcardDecks": [
       {
-        "id": "brand-grunderna",
-        "title": "Brandens grunder",
-        "description": "Grundläggande koncept inom brandvetenskap",
-        "category": "brandkunskap",
-        "difficulty": "easy",
+        "id": "fack1-utrustning",
+        "title": "Fack 1 - Dimspikset & RH Pusher",
+        "description": "Utrustning i fack 1 på brandbil 6510",
+        "category": "fordonskännedom",
+        "difficulty": "medium",
         "cards": [
           {
-            "id": "card-1",
-            "question": "Vad krävs för att en brand ska uppstå?",
-            "answer": "Brandtriangeln: Bränsle, syre och värme/gnista. Alla tre måste finnas för att en brand ska kunna uppstå och fortbestå.",
-            "category": "brandkunskap",
+            "id": "card-1-1",
+            "question": "Vilken utrustning finns i dimspikset?",
+            "answer": "Attack (1st), Begränsning (2st), Grenrör, Dimspikshammare, Slangväska gul (3avd. 25mm)",
+            "category": "fordonskännedom",
+            "difficulty": "medium"
+          },
+          {
+            "id": "card-1-2",
+            "question": "Vad ingår i RH Pusher-utrustningen?",
+            "answer": "Räddningsstötta (2st), Vevhandtag (2st), Säkringsband (2st), Lyftkrok (2st), Lyftbygel (2st), Fyruddsspets (2st)",
+            "category": "fordonskännedom",
+            "difficulty": "medium"
+          },
+          {
+            "id": "card-1-3",
+            "question": "Hur många dimstrålrör finns det och av vilka typer?",
+            "answer": "Dimstrålrör Unifire (2st) och Dimstrålrör V12 Multifire (1st)",
+            "category": "fordonskännedom",
+            "difficulty": "hard"
+          },
+          {
+            "id": "card-1-4",
+            "question": "Vilka slangväskor finns i fack 1?",
+            "answer": "Slangväskor röda (6st) och Slangväskor blå skogsbrand 2x25m (4st)",
+            "category": "fordonskännedom",
+            "difficulty": "medium"
+          },
+          {
+            "id": "card-1-5",
+            "question": "Vad finns för lyftkuddsutrustning?",
+            "answer": "Lyftkudde (2st - en större och en mindre), Flaskpaket, Regulatorslang svart, Manöverslang (2st) orange/blå, Pallningsvirke, Manöverpanel",
+            "category": "fordonskännedom",
+            "difficulty": "hard"
+          }
+        ]
+      },
+      {
+        "id": "fack2-skogsbrand",
+        "title": "Fack 2 - Skogsbrand & RAP",
+        "description": "Skogsbrandsutrustning och räddningstjänst vid farligt ämne",
+        "category": "fordonskännedom",
+        "difficulty": "medium",
+        "cards": [
+          {
+            "id": "card-2-1",
+            "question": "Vad finns i toppfacket i fack 2?",
+            "answer": "Skogsbrandsryggsäck (4st) med 2 avd. 42mm och 1st byxrör i botten i varje väska, samt Skogsbrandsoverall (5st)",
+            "category": "fordonskännedom",
+            "difficulty": "medium"
+          },
+          {
+            "id": "card-2-2",
+            "question": "Hur många RAP-kläder finns det och var förvaras de?",
+            "answer": "RAP kläder (4st uppsättningar) + påsar, förvaras i backar vid sidan",
+            "category": "fordonskännedom",
             "difficulty": "easy"
           },
           {
-            "id": "card-2",
-            "question": "Vad är brandgaser och varför är de farliga?",
-            "answer": "Brandgaser är giftiga gaser som bildas vid ofullständig förbränning, t.ex. kolmonoxid. De är ofta dödligare än själva branden.",
-            "category": "brandkunskap",
+            "id": "card-2-3",
+            "question": "Vilken säkerhetsutrustning finns för vattenräddning?",
+            "answer": "Flytvästar (2st) och Liksäck (2st) förvarade i backar vid sidan av fack 2",
+            "category": "fordonskännedom",
+            "difficulty": "easy"
+          },
+          {
+            "id": "card-2-4",
+            "question": "Vilka slangväskor finns i fack 2?",
+            "answer": "Mellanfack: Slangväskor JT pack (2st), Underfack: Slangväskor JT pack (1st)",
+            "category": "fordonskännedom",
+            "difficulty": "medium"
+          }
+        ]
+      },
+      {
+        "id": "fack3-verktyg",
+        "title": "Fack 3 - Dörrforcering & Släckutrustning",
+        "description": "Forceringsverktyg och släckutrustning",
+        "category": "fordonskännedom",
+        "difficulty": "hard",
+        "cards": [
+          {
+            "id": "card-3-1",
+            "question": "Vilka dörrforceringsverktyg finns i fack 3?",
+            "answer": "Falsbrytare, Multibreach, Brytjärn, Miniram (Bonk)",
+            "category": "fordonskännedom",
+            "difficulty": "hard"
+          },
+          {
+            "id": "card-3-2",
+            "question": "Hur många pulversläckare finns och vad ska kontrolleras?",
+            "answer": "Pulversläckare 6kg (2st), kontrollera att nålen är på grönt",
+            "category": "fordonskännedom",
             "difficulty": "medium"
           },
           {
-            "id": "card-3",
-            "question": "Vilka är de fyra brandklasserna?",
-            "answer": "Klass A: Fasta material (trä, papper). Klass B: Vätskor (bensin, olja). Klass C: Gaser (propan, metan). Klass D: Metaller (magnesium, natrium).",
-            "category": "brandkunskap",
+            "id": "card-3-3",
+            "question": "Vad finns i lådan under fack 3?",
+            "answer": "Trappor (2st), Kilar breda (2st), Kilar smala (2st), BP ända (2st)",
+            "category": "fordonskännedom",
             "difficulty": "medium"
+          },
+          {
+            "id": "card-3-4",
+            "question": "Vilka speciella släng finns i fack 3?",
+            "answer": "Södertörnhäck dubbel 42mm (2 avd. rökdykarslang) och Södertörnhäck enkel 42mm (2st)",
+            "category": "fordonskännedom",
+            "difficulty": "hard"
+          }
+        ]
+      },
+      {
+        "id": "fack4-hydraul",
+        "title": "Fack 4 - Hydraulverktyg & Skydd",
+        "description": "Hydraulverktyg och skyddsutrustning",
+        "category": "fordonskännedom",
+        "difficulty": "hard",
+        "cards": [
+          {
+            "id": "card-4-1",
+            "question": "Vilka hydraulverktyg finns i fack 4?",
+            "answer": "Kombisax, Holmatro hydraulaggregat (starta och kolla oljenivå), Hydralslang grön till kombisax",
+            "category": "fordonskännedom",
+            "difficulty": "hard"
+          },
+          {
+            "id": "card-4-2",
+            "question": "Vilka lyftredskap finns i fack 4?",
+            "answer": "Lyftband 6m 2ton (2st), Lyftband rött, Schackel 3,2 ton (2st), Vajer med öglor",
+            "category": "fordonskännedom",
+            "difficulty": "medium"
+          },
+          {
+            "id": "card-4-3",
+            "question": "Vad ska kontrolleras på ögonduscharna?",
+            "answer": "Ögondusch (2st) - kontrollera bäst före datum",
+            "category": "fordonskännedom",
+            "difficulty": "easy"
           }
         ]
       }
     ],
     "quizzes": [
       {
-        "id": "brandkunskap-grund",
-        "title": "Grundläggande brandkunskap",
-        "description": "Test dina kunskaper om brandens grunder",
-        "category": "brandkunskap",
-        "difficulty": "easy",
-        "timeLimit": 15,
-        "passingScore": 70,
+        "id": "fack-placering-quiz",
+        "title": "Fackplacering 6510",
+        "description": "Testa din kunskap om var utrustningen är placerad",
+        "category": "fordonskännedom",
+        "difficulty": "medium",
+        "timeLimit": 20,
+        "passingScore": 80,
         "questions": [
           {
-            "id": "q1",
-            "question": "Vilka tre komponenter ingår i brandtriangeln?",
-            "options": [
-              "Bränsle, syre, värme",
-              "Vatten, skum, pulver",
-              "Temperatur, tryck, tid",
-              "Rök, lågor, värme"
-            ],
+            "id": "q-1",
+            "question": "I vilket fack finns dimspikset?",
+            "options": ["Fack 1", "Fack 2", "Fack 3", "Fack 4"],
             "correctAnswer": 0,
-            "explanation": "Brandtriangeln består av bränsle, syre och värme. Tar man bort någon av dessa tre komponenter släcks branden."
+            "explanation": "Dimspikset med attack, begränsning och grenrör finns i fack 1"
           },
           {
-            "id": "q2",
-            "question": "Vilken brandklass representeras av brinnande vätskor?",
-            "options": [
-              "Klass A",
-              "Klass B", 
-              "Klass C",
-              "Klass D"
-            ],
+            "id": "q-2",
+            "question": "Var förvaras skogsbrandsryggsäckarna?",
+            "options": ["Fack 1 underfack", "Fack 2 toppfack", "Fack 3", "Fack 4"],
             "correctAnswer": 1,
-            "explanation": "Klass B representerar brinnande vätskor som bensin, diesel och oljor."
+            "explanation": "Skogsbrandsryggsäck (4st) förvaras i toppfacket i fack 2"
+          },
+          {
+            "id": "q-3",
+            "question": "I vilket fack finns dörrforceringsverktygen?",
+            "options": ["Fack 1", "Fack 2", "Fack 3", "Fack 4"],
+            "correctAnswer": 2,
+            "explanation": "Falsbrytare, Multibreach, Brytjärn och Miniram finns i fack 3"
+          },
+          {
+            "id": "q-4",
+            "question": "Var finns kombisaxen?",
+            "options": ["Fack 3", "Fack 4", "Fack 5", "Fack 6"],
+            "correctAnswer": 1,
+            "explanation": "Kombisaxen finns i fack 4 tillsammans med hydraulaggregatet"
+          },
+          {
+            "id": "q-5",
+            "question": "I vilket fack förvaras CAFS-utrustningen?",
+            "options": ["Fack 3", "Fack 4", "Fack 5", "Fack 6"],
+            "correctAnswer": 2,
+            "explanation": "CAFS-strålrör, adaptrar och spett finns i fack 5"
+          },
+          {
+            "id": "q-6",
+            "question": "Var finns brandpostverktygen?",
+            "options": ["Fack 5", "Fack 6", "Fack 7", "Fack 8"],
+            "correctAnswer": 1,
+            "explanation": "Brandposthuvud och brandpostnycklar finns i fack 6"
+          },
+          {
+            "id": "q-7",
+            "question": "I vilket fack förvaras motorsågarna?",
+            "options": ["Fack 6", "Fack 7", "Fack 8", "Taklåda"],
+            "correctAnswer": 1,
+            "explanation": "Kastsåg, cirkelsåg och tigersåg finns i fack 7"
+          },
+          {
+            "id": "q-8",
+            "question": "Var finns ytlivräddningsväskorna?",
+            "options": ["Fack 6", "Fack 7 underfack", "Fack 8", "Hytt"],
+            "correctAnswer": 1,
+            "explanation": "Ytlivräddningsväska (2st) XL/L finns i underfack 7"
+          },
+          {
+            "id": "q-9",
+            "question": "I vilket fack finns IVPA-väskan?",
+            "options": ["Fack 7", "Fack 8", "Hytt höger", "Taklåda"],
+            "correctAnswer": 1,
+            "explanation": "IVPA-väskan finns i fack 8 och ska funktionskontrolleras"
+          },
+          {
+            "id": "q-10",
+            "question": "Var förvaras lyftkuddarna?",
+            "options": ["Fack 1", "Fack 2", "Under fack 1", "Taklåda"],
+            "correctAnswer": 0,
+            "explanation": "Lyftkuddarna (2st) och tillbehör finns i fack 1"
+          },
+          {
+            "id": "q-11",
+            "question": "Hur många pulversläckare finns på bilen?",
+            "options": ["1 st", "2 st", "3 st", "4 st"],
+            "correctAnswer": 1,
+            "explanation": "Det finns 2st pulversläckare 6kg i fack 3"
+          },
+          {
+            "id": "q-12",
+            "question": "Var finns utskjutsstegen?",
+            "options": ["Fack 7", "Fack 8", "Taklåda", "Under fack 3"],
+            "correctAnswer": 2,
+            "explanation": "Utskjutsstegen finns i taklådan tillsammans med skarvstegen"
+          }
+        ]
+      },
+      {
+        "id": "utrustning-detaljer-quiz",
+        "title": "Utrustningsdetaljer 6510",
+        "description": "Detaljkunskap om specifik utrustning",
+        "category": "fordonskännedom",
+        "difficulty": "hard",
+        "timeLimit": 25,
+        "passingScore": 75,
+        "questions": [
+          {
+            "id": "q-d1",
+            "question": "Hur många begränsningsstrålrör finns i dimspikset?",
+            "options": ["1 st", "2 st", "3 st", "4 st"],
+            "correctAnswer": 1,
+            "explanation": "Det finns 2st begränsningsstrålrör i dimspikset"
+          },
+          {
+            "id": "q-d2",
+            "question": "Vilken storlek har slangväskorna i dimspikset?",
+            "options": ["25mm, 2 avd", "25mm, 3 avd", "42mm, 2 avd", "42mm, 3 avd"],
+            "correctAnswer": 1,
+            "explanation": "Slangväska gul innehåller 3 avdelningar 25mm slang"
+          },
+          {
+            "id": "q-d3",
+            "question": "Hur många skogsbrandsoveraller finns på bilen?",
+            "options": ["3 st", "4 st", "5 st", "6 st"],
+            "correctAnswer": 2,
+            "explanation": "Det finns 5st skogsbrandsoveraller i fack 2 toppfack"
+          },
+          {
+            "id": "q-d4",
+            "question": "Vad ska kontrolleras på pulversläckarna?",
+            "options": ["Att de är fulla", "Att nålen är på grönt", "Utgångsdatum", "Serienummer"],
+            "correctAnswer": 1,
+            "explanation": "På pulversläckarna ska man kontrollera att nålen är på grönt område"
+          },
+          {
+            "id": "q-d5",
+            "question": "Hur många CAFS-adaptrar för munstycke finns?",
+            "options": ["1st 25mm", "1st 32mm", "1st 25mm + 1st 32mm", "2st 25mm + 2st 32mm"],
+            "correctAnswer": 2,
+            "explanation": "Det finns 1st adapter 25mm och 1st adapter 32mm för CAFS"
+          },
+          {
+            "id": "q-d6",
+            "question": "Vad ska kontrolleras på IVPA-väskan?",
+            "options": ["Bara att den finns", "Funktionskontroll och datum på pads", "Endast batterinivå", "Endast förpackning"],
+            "correctAnswer": 1,
+            "explanation": "IVPA-väskan ska funktionskontrolleras genom att trycka på 'I' och kontrollera datum på pads"
+          },
+          {
+            "id": "q-d7",
+            "question": "Hur många dimstrålrör V12 Multifire finns?",
+            "options": ["1 st", "2 st", "3 st", "4 st"],
+            "correctAnswer": 0,
+            "explanation": "Det finns 1st dimstrålrör V12 Multifire (och 2st Unifire)"
+          },
+          {
+            "id": "q-d8",
+            "question": "Vilken kapacitet har lyftkuddarna?",
+            "options": ["2 ton", "3,2 ton", "6 ton", "Information saknas"],
+            "correctAnswer": 3,
+            "explanation": "Kapaciteten på lyftkuddarna specificeras inte i inventeringslistan"
           }
         ]
       }
     ],
     "scenarios": [
       {
-        "id": "lägenhetsbrand",
-        "title": "Lägenhetsbrand",
-        "description": "En brand har utbrutit i en lägenhet på tredje våningen",
-        "category": "brandkunskap",
+        "id": "inventering-scenario",
+        "title": "Veckocheck brandbil 6510",
+        "description": "Genomför en systematisk inventering av brandbil 6510",
+        "category": "fordonskännedom",
         "difficulty": "medium",
-        "estimatedTime": 20,
-        "situation": "Du anländer till en lägenhetsbrand. Rök kommer ut från fönster på tredje våningen. Flera personer står utanför byggnaden.",
+        "estimatedTime": 30,
+        "situation": "Du ska genomföra veckocheck av brandbil 6510. Börja med att kontrollera hytt utsida vänster och fortsätt systematiskt genom alla fack.",
         "steps": [
           {
             "id": "step-1",
-            "instruction": "Vad är ditt första åtgärd när du anländer till brandplatsen?",
+            "instruction": "Kontrollera hytt utsida vänster. Vilken utrustning ska du kontrollera först?",
             "choices": [
               {
-                "text": "Springa direkt in i byggnaden för att rädda människor",
-                "consequence": "Mycket farligt! Du riskerar att bli skadad utan att ha bedömt situationen.",
-                "isCorrect": false
-              },
-              {
-                "text": "Bedöma situationen och etablera en kommandoplats",
-                "consequence": "Korrekt! Lägesbilden är avgörande för en säker och effektiv insats.",
+                "text": "Börja med vattenkokaren",
+                "consequence": "Korrekt! Vattenkokaren är första punkten på checklistan för hytt utsida vänster.",
                 "isCorrect": true
               },
               {
-                "text": "Börja direkt med släckinsats från utsidan",
-                "consequence": "Du bör först bedöma om det finns personer i fara innan du fokuserar på släckning.",
+                "text": "Börja med NATO-kabeln",
+                "consequence": "NATO-kabeln finns där men börja systematiskt uppifrån på listan.",
+                "isCorrect": false
+              },
+              {
+                "text": "Börja med saneringsväskan",
+                "consequence": "Saneringsväskan är längre ner på listan, börja med första punkten.",
                 "isCorrect": false
               }
             ],
-            "explanation": "Lägesbedömning och kommandoplats är avgörande för att koordinera insatsen säkert."
+            "explanation": "Följ alltid checklistan systematiskt från första punkten för att inte missa något."
+          },
+          {
+            "id": "step-2",
+            "instruction": "Du kommer till fack 1. Vad ska du kontrollera i dimspikset?",
+            "choices": [
+              {
+                "text": "Attack (1st), Begränsning (2st), Grenrör, Dimspikshammare",
+                "consequence": "Rätt! Det är huvudutrustningen i dimspikset som alltid ska kontrolleras.",
+                "isCorrect": true
+              },
+              {
+                "text": "Bara attackstrålröret",
+                "consequence": "Du missar viktig utrustning. Kontrollera all dimspiksutrustning.",
+                "isCorrect": false
+              },
+              {
+                "text": "Endast slangväskan",
+                "consequence": "Slangväskan ingår men du måste kontrollera all dimspiksutrustning.",
+                "isCorrect": false
+              }
+            ],
+            "explanation": "Dimspikset är kritisk utrustning och alla delar måste kontrolleras enligt checklistan."
+          },
+          {
+            "id": "step-3",
+            "instruction": "Vid kontroll av lyftkuddar, vad är viktigt att kontrollera?",
+            "choices": [
+              {
+                "text": "Att flaskpaketet är fullt",
+                "consequence": "Mycket viktigt! Utan tryck fungerar inte lyftkuddarna.",
+                "isCorrect": true
+              },
+              {
+                "text": "Bara att kuddarna finns där",
+                "consequence": "Inte tillräckligt - du måste kontrollera funktionaliteten också.",
+                "isCorrect": false
+              },
+              {
+                "text": "Endast manöverslangarna",
+                "consequence": "Manöverslangarna är viktiga men flaskpaketet är kritiskt.",
+                "isCorrect": false
+              }
+            ],
+            "explanation": "Lyftkuddar utan tryck är värdelösa vid räddningsinsats."
+          },
+          {
+            "id": "step-4",
+            "instruction": "I fack 3 ska du kontrollera pulversläckarna. Vad är viktigt?",
+            "choices": [
+              {
+                "text": "Kontrollera att nålen är på grönt",
+                "consequence": "Exakt rätt! Grön markering visar att trycket är korrekt.",
+                "isCorrect": true
+              },
+              {
+                "text": "Bara att de finns på plats",
+                "consequence": "Inte tillräckligt - funktionskontroll är nödvändig.",
+                "isCorrect": false
+              },
+              {
+                "text": "Kontrollera endast vikten",
+                "consequence": "Vikten berättar inte om trycket är korrekt.",
+                "isCorrect": false
+              }
+            ],
+            "explanation": "Nålen på grönt visar att pulversläckaren har korrekt tryck och är funktionsduglig."
+          },
+          {
+            "id": "step-5",
+            "instruction": "Du har kommit till fack 8 med IVPA-väskan. Hur utförs funktionskontrollen?",
+            "choices": [
+              {
+                "text": "Tryck på 'I' och kolla datum på pads",
+                "consequence": "Perfekt! Det är exakt så funktionskontrollen ska utföras.",
+                "isCorrect": true
+              },
+              {
+                "text": "Bara kontrollera att väskan är hel",
+                "consequence": "Otillräckligt - funktionskontroll krävs för livräddningsutrustning.",
+                "isCorrect": false
+              },
+              {
+                "text": "Endast kolla batterinivån",
+                "consequence": "Batteriet är viktigt men du måste även testa funktionen och kontrollera pads.",
+                "isCorrect": false
+              }
+            ],
+            "explanation": "IVPA-väskan är livräddningsutrustning och måste funktionskontrolleras varje vecka."
           }
         ]
       }
