@@ -1,0 +1,113 @@
+{
+  "brandkunskap": {
+    "id": "brandkunskap",
+    "name": "Brandkunskap",
+    "description": "Grundläggande kunskap om brand, förbränning och brandsläckning",
+    "category": "brandkunskap",
+    "icon": "🔥",
+    "flashcardDecks": [
+      {
+        "id": "brand-grunderna",
+        "title": "Brandens grunder",
+        "description": "Grundläggande koncept inom brandvetenskap",
+        "category": "brandkunskap",
+        "difficulty": "easy",
+        "cards": [
+          {
+            "id": "card-1",
+            "question": "Vad krävs för att en brand ska uppstå?",
+            "answer": "Brandtriangeln: Bränsle, syre och värme/gnista. Alla tre måste finnas för att en brand ska kunna uppstå och fortbestå.",
+            "category": "brandkunskap",
+            "difficulty": "easy"
+          },
+          {
+            "id": "card-2",
+            "question": "Vad är brandgaser och varför är de farliga?",
+            "answer": "Brandgaser är giftiga gaser som bildas vid ofullständig förbränning, t.ex. kolmonoxid. De är ofta dödligare än själva branden.",
+            "category": "brandkunskap",
+            "difficulty": "medium"
+          },
+          {
+            "id": "card-3",
+            "question": "Vilka är de fyra brandklasserna?",
+            "answer": "Klass A: Fasta material (trä, papper). Klass B: Vätskor (bensin, olja). Klass C: Gaser (propan, metan). Klass D: Metaller (magnesium, natrium).",
+            "category": "brandkunskap",
+            "difficulty": "medium"
+          }
+        ]
+      }
+    ],
+    "quizzes": [
+      {
+        "id": "brandkunskap-grund",
+        "title": "Grundläggande brandkunskap",
+        "description": "Test dina kunskaper om brandens grunder",
+        "category": "brandkunskap",
+        "difficulty": "easy",
+        "timeLimit": 15,
+        "passingScore": 70,
+        "questions": [
+          {
+            "id": "q1",
+            "question": "Vilka tre komponenter ingår i brandtriangeln?",
+            "options": [
+              "Bränsle, syre, värme",
+              "Vatten, skum, pulver",
+              "Temperatur, tryck, tid",
+              "Rök, lågor, värme"
+            ],
+            "correctAnswer": 0,
+            "explanation": "Brandtriangeln består av bränsle, syre och värme. Tar man bort någon av dessa tre komponenter släcks branden."
+          },
+          {
+            "id": "q2",
+            "question": "Vilken brandklass representeras av brinnande vätskor?",
+            "options": [
+              "Klass A",
+              "Klass B", 
+              "Klass C",
+              "Klass D"
+            ],
+            "correctAnswer": 1,
+            "explanation": "Klass B representerar brinnande vätskor som bensin, diesel och oljor."
+          }
+        ]
+      }
+    ],
+    "scenarios": [
+      {
+        "id": "lägenhetsbrand",
+        "title": "Lägenhetsbrand",
+        "description": "En brand har utbrutit i en lägenhet på tredje våningen",
+        "category": "brandkunskap",
+        "difficulty": "medium",
+        "estimatedTime": 20,
+        "situation": "Du anländer till en lägenhetsbrand. Rök kommer ut från fönster på tredje våningen. Flera personer står utanför byggnaden.",
+        "steps": [
+          {
+            "id": "step-1",
+            "instruction": "Vad är ditt första åtgärd när du anländer till brandplatsen?",
+            "choices": [
+              {
+                "text": "Springa direkt in i byggnaden för att rädda människor",
+                "consequence": "Mycket farligt! Du riskerar att bli skadad utan att ha bedömt situationen.",
+                "isCorrect": false
+              },
+              {
+                "text": "Bedöma situationen och etablera en kommandoplats",
+                "consequence": "Korrekt! Lägesbilden är avgörande för en säker och effektiv insats.",
+                "isCorrect": true
+              },
+              {
+                "text": "Börja direkt med släckinsats från utsidan",
+                "consequence": "Du bör först bedöma om det finns personer i fara innan du fokuserar på släckning.",
+                "isCorrect": false
+              }
+            ],
+            "explanation": "Lägesbedömning och kommandoplats är avgörande för att koordinera insatsen säkert."
+          }
+        ]
+      }
+    ]
+  }
+}
