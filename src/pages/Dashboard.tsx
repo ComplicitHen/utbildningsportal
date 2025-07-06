@@ -24,7 +24,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
 
             {/* Snabbstatistik */}
             <div className="grid" style={{ marginBottom: '40px' }}>
-                <div className="card" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', color: 'white' }}>
+                <div className="card" style={{ background: 'linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%)', color: 'white' }}>
                     <h3 style={{ margin: '0 0 10px 0' }}>📊 Din progress</h3>
                     <p style={{ fontSize: '2rem', margin: '10px 0' }}>
                         {user.completedQuizzes?.length || 0}
@@ -32,20 +32,12 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
                     <p style={{ margin: 0, opacity: 0.9 }}>Genomförda quiz</p>
                 </div>
                 
-                <div className="card" style={{ background: 'linear-gradient(135deg, #28a745 0%, #20c997 100%)', color: 'white' }}>
+                <div className="card" style={{ background: 'linear-gradient(135deg, #4caf50 0%, #388e3c 100%)', color: 'white' }}>
                     <h3 style={{ margin: '0 0 10px 0' }}>🎯 Aktivitet</h3>
                     <p style={{ fontSize: '2rem', margin: '10px 0' }}>
                         {recentActivity.length}
                     </p>
                     <p style={{ margin: 0, opacity: 0.9 }}>Aktiva områden</p>
-                </div>
-                
-                <div className="card" style={{ background: 'linear-gradient(135deg, #ffc107 0%, #fd7e14 100%)', color: 'white' }}>
-                    <h3 style={{ margin: '0 0 10px 0' }}>⭐ Nivå</h3>
-                    <p style={{ fontSize: '2rem', margin: '10px 0' }}>
-                        {user.role === 'instructor' ? 'Instruktör' : 'Student'}
-                    </p>
-                    <p style={{ margin: 0, opacity: 0.9 }}>Din roll</p>
                 </div>
             </div>
 

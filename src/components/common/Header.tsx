@@ -17,7 +17,7 @@ const Header: React.FC<HeaderProps> = ({ user }) => {
 
     return (
         <header style={{
-            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            background: 'linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%)',
             color: 'white',
             padding: '1rem 2rem',
             display: 'flex',
