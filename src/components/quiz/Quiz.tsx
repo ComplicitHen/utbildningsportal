@@ -133,13 +133,13 @@ const Quiz: React.FC<QuizProps> = ({ user }) => {
                     <Link to="/training-areas" style={{ color: 'var(--primary-red)', textDecoration: 'none' }}>
                         ← Tillbaka till utbildningsområden
                     </Link>
-                    <h1 style={{ color: 'var(--black)', margin: '10px 0' }}>🧪 {quiz.title}</h1>
-                    <p style={{ color: 'var(--dark-gray)' }}>{quiz.description}</p>
+                    <h1 style={{ color: 'var(--text-primary)', margin: '10px 0' }}>🧪 {quiz.title}</h1>
+                    <p style={{ color: 'var(--text-secondary)' }}>{quiz.description}</p>
                 </div>
 
                 <div className="card" style={{ textAlign: 'center' }}>
-                    <h2 style={{ marginBottom: '20px' }}>Välj antal frågor</h2>
-                    <p style={{ color: 'var(--dark-gray)', marginBottom: '30px' }}>
+                    <h2 style={{ marginBottom: '20px', color: 'var(--text-primary)' }}>Välj antal frågor</h2>
+                    <p style={{ color: 'var(--text-secondary)', marginBottom: '30px' }}>
                         Totalt tillgängliga frågor: {quiz.questions.length}
                     </p>
                     
@@ -183,7 +183,7 @@ const Quiz: React.FC<QuizProps> = ({ user }) => {
                         )}
                     </div>
                     
-                    <p style={{ fontSize: '0.9rem', color: 'var(--medium-gray)' }}>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text-disabled)' }}>
                         Frågorna väljs slumpmässigt från hela samlingen
                     </p>
                 </div>

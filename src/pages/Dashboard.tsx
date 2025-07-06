@@ -14,10 +14,10 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
     return (
         <div style={{ padding: '20px' }}>
             <div style={{ marginBottom: '30px' }}>
-                <h1 style={{ color: '#333', marginBottom: '10px' }}>
+                <h1 style={{ color: 'var(--text-primary)', marginBottom: '10px' }}>
                     Välkommen tillbaka, {user.displayName || user.email}! 🔥
                 </h1>
-                <p style={{ color: '#666', fontSize: '1.1rem' }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
                     Fortsätt din brandmansutbildning där du slutade.
                 </p>
             </div>
@@ -43,7 +43,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
 
             {/* Utbildningsområden */}
             <div style={{ marginBottom: '40px' }}>
-                <h2 style={{ color: '#333', marginBottom: '20px' }}>🏫 Utbildningsområden</h2>
+                <h2 style={{ color: 'var(--text-primary)', marginBottom: '20px' }}>🏫 Utbildningsområden</h2>
                 <div className="grid">
                     {trainingAreas.map((area) => (
                         <Link 
@@ -66,7 +66,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
                                     justifyContent: 'space-around', 
                                     marginTop: '15px',
                                     fontSize: '0.9rem',
-                                    color: '#666'
+                                    color: 'var(--text-secondary)'
                                 }}>
                                     <span>📚 {area.flashcardDecks.length} Kortlekar</span>
                                     <span>🧪 {area.quizzes.length} Quiz</span>
@@ -80,13 +80,13 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
 
             {/* Snabblänkar */}
             <div>
-                <h2 style={{ color: '#333', marginBottom: '20px' }}>🚀 Snabblänkar</h2>
+                <h2 style={{ color: 'var(--text-primary)', marginBottom: '20px' }}>🚀 Snabblänkar</h2>
                 <div className="grid">
                     <Link to="/training-areas" style={{ textDecoration: 'none' }}>
                         <div className="card" style={{ textAlign: 'center' }}>
                             <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>📚</div>
                             <h3>Alla utbildningsområden</h3>
-                            <p style={{ color: '#666' }}>Bläddra bland alla tillgängliga kurser</p>
+                            <p style={{ color: 'var(--text-secondary)' }}>Bläddra bland alla tillgängliga kurser</p>
                         </div>
                     </Link>
                     
@@ -94,7 +94,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
                         <div className="card" style={{ textAlign: 'center' }}>
                             <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>🏆</div>
                             <h3>Leaderboard</h3>
-                            <p style={{ color: '#666' }}>Se vem som presterar bäst</p>
+                            <p style={{ color: 'var(--text-secondary)' }}>Se vem som presterar bäst</p>
                         </div>
                     </Link>
                     
@@ -102,7 +102,7 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
                         <div className="card" style={{ textAlign: 'center' }}>
                             <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>👤</div>
                             <h3>Min profil</h3>
-                            <p style={{ color: '#666' }}>Se din progress och uppdatera inställningar</p>
+                            <p style={{ color: 'var(--text-secondary)' }}>Se din progress och uppdatera inställningar</p>
                         </div>
                     </Link>
                 </div>
