@@ -7,6 +7,7 @@ const Register: React.FC = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [displayName, setDisplayName] = useState('');
+    const [serviceNumber, setServiceNumber] = useState('');
     const [error, setError] = useState<string | null>(null);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ const Register: React.FC = () => {
         setLoading(true);
 
         try {
-            await registerUser(email, password, displayName);
+            await registerUser(email, password, displayName, serviceNumber);
             navigate('/dashboard');
         } catch (err: any) {
             setError(err.message || 'Ett fel uppstod vid registreringen');
@@ -56,6 +57,18 @@ const Register: React.FC = () => {
                         onChange={(e) => setDisplayName(e.target.value)}
                         disabled={loading}
                         placeholder="Ditt namn"
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Tjänstenummer:</label>
+                    <input
+                        type="text"
+                        value={serviceNumber}
+                        onChange={(e) => setServiceNumber(e.target.value)}
+                        disabled={loading}
+                        placeholder="Ex. 761"
+                        pattern="[0-9]*"
+                        title="Endast siffror tillåtna"
                     />
                 </div>
                 <div className="form-group">

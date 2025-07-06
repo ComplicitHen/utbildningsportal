@@ -90,6 +90,14 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
                         </div>
                     </Link>
                     
+                    <Link to="/leaderboard" style={{ textDecoration: 'none' }}>
+                        <div className="card" style={{ textAlign: 'center' }}>
+                            <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>🏆</div>
+                            <h3>Leaderboard</h3>
+                            <p style={{ color: '#666' }}>Se vem som presterar bäst</p>
+                        </div>
+                    </Link>
+                    
                     <Link to="/profile" style={{ textDecoration: 'none' }}>
                         <div className="card" style={{ textAlign: 'center' }}>
                             <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>👤</div>

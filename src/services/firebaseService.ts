@@ -1,6 +1,6 @@
-import { doc, setDoc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
+import { doc, setDoc, getDoc, updateDoc, arrayUnion, collection, query, orderBy, limit, getDocs, where, Timestamp } from 'firebase/firestore';
 import { db } from './firebase';
-import { User, UserProgress } from '../types';
+import { User, UserProgress, QuizResult, LeaderboardEntry } from '../types';
 
 export class FirebaseService {
     // Create user profile in Firestore
@@ -14,9 +14,13 @@ export class FirebaseService {
                     id: user.id,
                     email: user.email,
                     displayName: user.displayName || '',
+                    serviceNumber: user.serviceNumber || '',
                     role: 'student',
                     completedQuizzes: [],
                     progress: {},
+                    quizSettings: {
+                        preferredQuestionCount: 20
+                    },
                     createdAt: new Date(),
                     lastActivity: new Date()
                 };
@@ -116,9 +120,9 @@ export class FirebaseService {
     }
 
     // Save quiz result
-    static async saveQuizResult(quizResult: any): Promise<void> {
+    static async saveQuizResult(quizResult: QuizResult): Promise<void> {
         try {
-            const resultRef = doc(db, 'quizResults', `${quizResult.userId}_${quizResult.quizId}_${Date.now()}`);
+            const resultRef = doc(db, 'quizResults', quizResult.id);
             await setDoc(resultRef, {
                 ...quizResult,
                 completedAt: new Date()
@@ -127,6 +131,129 @@ export class FirebaseService {
         } catch (error) {
             console.error('Error saving quiz result:', error);
             throw error;
+        }
+    }
+
+    // Get leaderboard
+    static async getLeaderboard(timeFrame: 'all' | 'month' | 'week' = 'all'): Promise<LeaderboardEntry[]> {
+        try {
+            const usersRef = collection(db, 'users');
+            let usersQuery = query(usersRef, orderBy('lastActivity', 'desc'));
+
+            // Om vi vill filtrera på tid, lägg till where-clause
+            if (timeFrame !== 'all') {
+                const now = new Date();
+                const filterDate = new Date();
+                
+                if (timeFrame === 'week') {
+                    filterDate.setDate(now.getDate() - 7);
+                } else if (timeFrame === 'month') {
+                    filterDate.setMonth(now.getMonth() - 1);
+                }
+                
+                usersQuery = query(
+                    usersRef, 
+                    where('lastActivity', '>=', Timestamp.fromDate(filterDate)),
+                    orderBy('lastActivity', 'desc')
+                );
+            }
+
+            const snapshot = await getDocs(usersQuery);
+            const leaderboardData: LeaderboardEntry[] = [];
+
+            for (const userDoc of snapshot.docs) {
+                const userData = userDoc.data() as User;
+                
+                // Hoppa över användare utan serviceNumber
+                if (!userData.serviceNumber || !userData.displayName) continue;
+
+                // Räkna total poäng och quiz från progress
+                let totalScore = 0;
+                let totalQuizzes = 0;
+                
+                if (userData.progress) {
+                    Object.values(userData.progress).forEach(areaProgress => {
+                        totalScore += areaProgress.totalScore || 0;
+                        totalQuizzes += areaProgress.completedQuizzes?.length || 0;
+                    });
+                }
+
+                const averageScore = totalQuizzes > 0 ? (totalScore / totalQuizzes) : 0;
+
+                leaderboardData.push({
+                    userId: userData.id,
+                    userDisplayName: userData.displayName,
+                    serviceNumber: userData.serviceNumber,
+                    totalScore,
+                    completedQuizzes: totalQuizzes,
+                    averageScore,
+                    lastActivity: userData.lastActivity || new Date()
+                });
+            }
+
+            // Sortera efter totalScore, sedan averageScore
+            leaderboardData.sort((a, b) => {
+                if (b.totalScore !== a.totalScore) {
+                    return b.totalScore - a.totalScore;
+                }
+                return b.averageScore - a.averageScore;
+            });
+
+            return leaderboardData.slice(0, 50); // Top 50
+        } catch (error) {
+            console.error('Error getting leaderboard:', error);
+            return [];
+        }
+    }
+
+    // Get user quiz statistics
+    static async getUserQuizStats(userId: string): Promise<{
+        totalQuizzes: number;
+        averageScore: number;
+        bestScore: number;
+        recentActivity: Date | null;
+    }> {
+        try {
+            const quizResultsRef = collection(db, 'quizResults');
+            const userQuizQuery = query(
+                quizResultsRef,
+                where('userId', '==', userId),
+                orderBy('completedAt', 'desc')
+            );
+
+            const snapshot = await getDocs(userQuizQuery);
+            const results = snapshot.docs.map(doc => doc.data() as QuizResult);
+
+            if (results.length === 0) {
+                return {
+                    totalQuizzes: 0,
+                    averageScore: 0,
+                    bestScore: 0,
+                    recentActivity: null
+                };
+            }
+
+            const totalQuizzes = results.length;
+            const averageScore = results.reduce((sum, result) => 
+                sum + ((result.score / result.totalQuestions) * 100), 0) / totalQuizzes;
+            const bestScore = Math.max(...results.map(result => 
+                (result.score / result.totalQuestions) * 100));
+            const recentActivity = results[0].completedAt;
+
+            return {
+                totalQuizzes,
+                averageScore: Math.round(averageScore),
+                bestScore: Math.round(bestScore),
+                recentActivity
+            };
+        } catch (error) {
+            console.error('Error getting user quiz stats:', error);
+            return {
+                totalQuizzes: 0,
+                averageScore: 0,
+                bestScore: 0,
+                recentActivity: null
+            };
         }
     }
 }

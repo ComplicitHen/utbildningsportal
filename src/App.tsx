@@ -7,6 +7,7 @@ import Register from './components/auth/Register';
 import Dashboard from './pages/Dashboard';
 import TrainingAreas from './pages/TrainingAreas';
 import Profile from './pages/Profile';
+import Leaderboard from './components/leaderboard/Leaderboard';
 import FlashcardDeck from './components/flashcards/FlashcardDeck';
 import Quiz from './components/quiz/Quiz';
 import ScenarioTraining from './components/scenarios/ScenarioTraining';
@@ -71,6 +72,10 @@ const App: React.FC = () => {
               <Route 
                 path="/training-areas" 
                 element={authState.user ? <TrainingAreas /> : <Navigate to="/login" />} 
+              />
+              <Route 
+                path="/leaderboard" 
+                element={authState.user ? <Leaderboard /> : <Navigate to="/login" />} 
               />
               <Route 
                 path="/profile" 

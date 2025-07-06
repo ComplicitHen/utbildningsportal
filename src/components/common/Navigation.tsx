@@ -7,6 +7,7 @@ const Navigation: React.FC = () => {
     const navItems = [
         { path: '/dashboard', icon: '📊', label: 'Dashboard' },
         { path: '/training-areas', icon: '📚', label: 'Utbildningsområden' },
+        { path: '/leaderboard', icon: '🏆', label: 'Leaderboard' },
         { path: '/profile', icon: '👤', label: 'Profil' }
     ];
 
@@ -33,9 +34,9 @@ const Navigation: React.FC = () => {
                                 gap: '12px',
                                 padding: '12px 20px',
                                 textDecoration: 'none',
-                                color: location.pathname === item.path ? '#667eea' : '#333',
-                                background: location.pathname === item.path ? 'rgba(102, 126, 234, 0.1)' : 'transparent',
-                                borderRight: location.pathname === item.path ? '3px solid #667eea' : 'none',
+                                color: location.pathname === item.path ? 'var(--primary-red)' : 'var(--black)',
+                                background: location.pathname === item.path ? 'rgba(211, 47, 47, 0.1)' : 'transparent',
+                                borderRight: location.pathname === item.path ? '3px solid var(--primary-red)' : 'none',
                                 transition: 'all 0.3s ease',
                                 fontSize: '1rem'
                             }}

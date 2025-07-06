@@ -10,7 +10,7 @@ import { auth, db } from './firebase';
 import { User as AppUser } from '../types';
 import { FirebaseService } from './firebaseService';
 
-export const registerUser = async (email: string, password: string, displayName?: string) => {
+export const registerUser = async (email: string, password: string, displayName?: string, serviceNumber?: string) => {
     try {
         const userCredential = await createUserWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
@@ -20,9 +20,13 @@ export const registerUser = async (email: string, password: string, displayName?
             id: user.uid,
             email: user.email!,
             displayName: displayName || email.split('@')[0],
+            serviceNumber: serviceNumber,
             role: 'student',
             completedQuizzes: [],
-            progress: {}
+            progress: {},
+            quizSettings: {
+                preferredQuestionCount: 20
+            }
         };
         
         await FirebaseService.createUserProfile(userData);

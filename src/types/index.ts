@@ -2,9 +2,16 @@ export interface User {
     id: string;
     email: string;
     displayName?: string;
+    serviceNumber?: string; // Tjänstenummer (ex. 761)
     role?: 'student' | 'instructor' | 'admin';
     completedQuizzes?: string[];
     progress?: UserProgress;
+    quizSettings?: QuizSettings;
+    lastActivity?: Date;
+}
+
+export interface QuizSettings {
+    preferredQuestionCount: number;
 }
 
 export interface UserProgress {
@@ -58,11 +65,24 @@ export interface QuizQuestion {
 export interface QuizResult {
     id: string;
     userId: string;
+    userServiceNumber?: string;
+    userDisplayName?: string;
     quizId: string;
     score: number;
+    totalQuestions: number;
     answers: { questionId: string; selectedAnswer: number; correct: boolean }[];
     completedAt: Date;
     timeSpent: number; // i sekunder
+}
+
+export interface LeaderboardEntry {
+    userId: string;
+    userDisplayName: string;
+    serviceNumber: string;
+    totalScore: number;
+    completedQuizzes: number;
+    averageScore: number;
+    lastActivity: Date;
 }
 
 export interface Scenario {
