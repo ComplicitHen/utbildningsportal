@@ -10,6 +10,7 @@ import Profile from './pages/Profile';
 import Leaderboard from './components/leaderboard/Leaderboard';
 import FlashcardDeck from './components/flashcards/FlashcardDeck';
 import Quiz from './components/quiz/Quiz';
+import SambandsQuiz from './components/quiz/SambandsQuiz';
 import ScenarioTraining from './components/scenarios/ScenarioTraining';
 import { onAuthStateChanged } from './services/auth';
 import { User, AuthState } from './types';
@@ -92,6 +93,10 @@ const App: React.FC = () => {
               <Route 
                 path="/scenarios/:areaId/:scenarioId" 
                 element={authState.user ? <ScenarioTraining user={authState.user} /> : <Navigate to="/login" />} 
+              />
+              <Route 
+                path="/samband-quiz" 
+                element={authState.user ? <SambandsQuiz /> : <Navigate to="/login" />} 
               />
             </Routes>
           </main>

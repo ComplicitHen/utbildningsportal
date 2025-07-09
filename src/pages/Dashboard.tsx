@@ -12,65 +12,70 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
     const recentActivity = user.progress ? Object.keys(user.progress).slice(0, 3) : [];
 
     return (
-        <div style={{ padding: '20px' }}>
-            <div style={{ marginBottom: '30px' }}>
-                <h1 style={{ color: 'var(--text-primary)', marginBottom: '10px' }}>
+        <div className="page-container">
+            <div className="page-header">
+                <h1 className="page-title">
                     Välkommen tillbaka, {user.displayName || user.email}! 🔥
                 </h1>
-                <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem' }}>
+                <p className="page-subtitle">
                     Fortsätt din brandmansutbildning där du slutade.
                 </p>
             </div>
 
             {/* Snabbstatistik */}
             <div className="grid" style={{ marginBottom: '40px' }}>
-                <div className="card" style={{ background: 'linear-gradient(135deg, #d32f2f 0%, #b71c1c 100%)', color: 'white' }}>
-                    <h3 style={{ margin: '0 0 10px 0' }}>📊 Din progress</h3>
-                    <p style={{ fontSize: '2rem', margin: '10px 0' }}>
+                <div className="card stat-card stat-card-danger">
+                    <div className="stat-icon-large">📊</div>
+                    <h3 className="stat-title">Din progress</h3>
+                    <div className="stat-number">
                         {user.completedQuizzes?.length || 0}
-                    </p>
-                    <p style={{ margin: 0, opacity: 0.9 }}>Genomförda quiz</p>
+                    </div>
+                    <p className="stat-description">Genomförda quiz</p>
                 </div>
                 
-                <div className="card" style={{ background: 'linear-gradient(135deg, #4caf50 0%, #388e3c 100%)', color: 'white' }}>
-                    <h3 style={{ margin: '0 0 10px 0' }}>🎯 Aktivitet</h3>
-                    <p style={{ fontSize: '2rem', margin: '10px 0' }}>
+                <div className="card stat-card stat-card-success">
+                    <div className="stat-icon-large">🎯</div>
+                    <h3 className="stat-title">Aktivitet</h3>
+                    <div className="stat-number">
                         {recentActivity.length}
-                    </p>
-                    <p style={{ margin: 0, opacity: 0.9 }}>Aktiva områden</p>
+                    </div>
+                    <p className="stat-description">Aktiva områden</p>
                 </div>
             </div>
 
             {/* Utbildningsområden */}
-            <div style={{ marginBottom: '40px' }}>
-                <h2 style={{ color: 'var(--text-primary)', marginBottom: '20px' }}>🏫 Utbildningsområden</h2>
+            <div className="section">
+                <h2 className="section-title">🏫 Utbildningsområden</h2>
                 <div className="grid">
                     {trainingAreas.map((area) => (
                         <Link 
                             key={area.id} 
                             to={`/training-areas`}
-                            style={{ textDecoration: 'none' }}
+                            className="card-link"
                         >
-                            <div className="card" style={{ height: '100%' }}>
-                                <div style={{ fontSize: '3rem', textAlign: 'center', marginBottom: '15px' }}>
+                            <div className="card">
+                                <div className="card-icon-large">
                                     {area.icon}
                                 </div>
-                                <h3 className="card-title" style={{ textAlign: 'center' }}>
+                                <h3 className="card-title">
                                     {area.name}
                                 </h3>
-                                <p className="card-description" style={{ textAlign: 'center' }}>
+                                <p className="card-description">
                                     {area.description}
                                 </p>
-                                <div style={{ 
-                                    display: 'flex', 
-                                    justifyContent: 'space-around', 
-                                    marginTop: '15px',
-                                    fontSize: '0.9rem',
-                                    color: 'var(--text-secondary)'
-                                }}>
-                                    <span>📚 {area.flashcardDecks.length} Kortlekar</span>
-                                    <span>🧪 {area.quizzes.length} Quiz</span>
-                                    <span>🎭 {area.scenarios.length} Scenarios</span>
+                                <div className="card-stats">
+                                    <div className="stat-item">
+                                        <span className="stat-icon">📚</span>
+                                        <span>{area.flashcardDecks.length} Kortlekar</span>
+                                    </div>
+                                    <div className="stat-item">
+                                        <span className="stat-icon">🧪</span>
+                                        <span>{area.quizzes.length} Quiz</span>
+                                    </div>
+                                    <div className="stat-item">
+                                        <span className="stat-icon">🎭</span>
+                                        <span>{area.scenarios.length} Scenarios</span>
+                                    </div>
                                 </div>
                             </div>
                         </Link>
@@ -79,30 +84,39 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
             </div>
 
             {/* Snabblänkar */}
-            <div>
-                <h2 style={{ color: 'var(--text-primary)', marginBottom: '20px' }}>🚀 Snabblänkar</h2>
+            <div className="section">
+                <h2 className="section-title">🚀 Snabblänkar</h2>
                 <div className="grid">
-                    <Link to="/training-areas" style={{ textDecoration: 'none' }}>
-                        <div className="card" style={{ textAlign: 'center' }}>
-                            <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>📚</div>
-                            <h3>Alla utbildningsområden</h3>
-                            <p style={{ color: 'var(--text-secondary)' }}>Bläddra bland alla tillgängliga kurser</p>
+                    <Link to="/training-areas" className="card-link">
+                        <div className="card quick-link-card">
+                            <div className="card-icon-large">📚</div>
+                            <h3 className="card-title">Alla utbildningsområden</h3>
+                            <p className="card-description">Bläddra bland alla tillgängliga kurser</p>
                         </div>
                     </Link>
                     
-                    <Link to="/leaderboard" style={{ textDecoration: 'none' }}>
-                        <div className="card" style={{ textAlign: 'center' }}>
-                            <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>🏆</div>
-                            <h3>Leaderboard</h3>
-                            <p style={{ color: 'var(--text-secondary)' }}>Se vem som presterar bäst</p>
+                    <Link to="/samband-quiz" className="card-link">
+                        <div className="card quick-link-card featured-link">
+                            <div className="card-icon-large">📡</div>
+                            <h3 className="card-title">Sambandsquiz</h3>
+                            <p className="card-description">Träna samband med anpassningsbara quiz</p>
+                            <span className="new-badge">NYTT</span>
                         </div>
                     </Link>
                     
-                    <Link to="/profile" style={{ textDecoration: 'none' }}>
-                        <div className="card" style={{ textAlign: 'center' }}>
-                            <div style={{ fontSize: '2.5rem', marginBottom: '10px' }}>👤</div>
-                            <h3>Min profil</h3>
-                            <p style={{ color: 'var(--text-secondary)' }}>Se din progress och uppdatera inställningar</p>
+                    <Link to="/leaderboard" className="card-link">
+                        <div className="card quick-link-card">
+                            <div className="card-icon-large">🏆</div>
+                            <h3 className="card-title">Leaderboard</h3>
+                            <p className="card-description">Se vem som presterar bäst</p>
+                        </div>
+                    </Link>
+                    
+                    <Link to="/profile" className="card-link">
+                        <div className="card quick-link-card">
+                            <div className="card-icon-large">👤</div>
+                            <h3 className="card-title">Min profil</h3>
+                            <p className="card-description">Se din progress och uppdatera inställningar</p>
                         </div>
                     </Link>
                 </div>

@@ -157,16 +157,6 @@
     ],
     "quizzes": [
       {
-        "id": "inventory-mega-quiz",
-        "title": "🚒 Komplett Inventariequiz 6510",
-        "description": "Dynamiskt genererat quiz med slumpmässiga frågor från hela inventariet (200+ föremål). Varje gång du startar får du nya frågor!",
-        "category": "fordonskännedom",
-        "difficulty": "hard",
-        "timeLimit": 30,
-        "passingScore": 80,
-        "questions": []
-      },
-      {
         "id": "fack-placering-quiz",
         "title": "Fackplacering 6510",
         "description": "Testa din kunskap om var utrustningen är placerad",

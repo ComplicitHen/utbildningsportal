@@ -42,146 +42,98 @@ const Leaderboard: React.FC = () => {
 
     if (loading) {
         return (
-            <div style={{ padding: '20px', textAlign: 'center' }}>
-                <div className="loading-spinner">📊</div>
-                <p>Laddar leaderboard...</p>
+            <div className="page-container">
+                <div className="loading-state">
+                    <div className="loading-spinner">📊</div>
+                    <p>Laddar leaderboard...</p>
+                </div>
             </div>
         );
     }
 
     return (
-        <div style={{ padding: '20px', maxWidth: '800px', margin: '0 auto' }}>
-            <div style={{ marginBottom: '30px', textAlign: 'center' }}>
-                <h1 style={{ color: 'var(--black)', marginBottom: '10px' }}>
+        <div className="page-container" style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <div className="page-header">
+                <h1 className="page-title">
                     🏆 Leaderboard
                 </h1>
-                <p style={{ color: 'var(--dark-gray)' }}>
+                <p className="page-subtitle">
                     Bästa prestationer från våra brandmän
                 </p>
             </div>
 
             {/* Tidsperiod väljare */}
-            <div style={{ 
-                display: 'flex', 
-                justifyContent: 'center', 
-                gap: '10px', 
-                marginBottom: '30px' 
-            }}>
-                {(['all', 'month', 'week'] as const).map((period) => (
-                    <button
-                        key={period}
-                        onClick={() => setTimeFrame(period)}
-                        className="btn"
-                        style={{
-                            background: timeFrame === period 
-                                ? 'var(--primary-red)' 
-                                : 'var(--medium-gray)',
-                            padding: '8px 16px',
-                            fontSize: '0.9rem'
-                        }}
-                    >
-                        {period === 'all' ? 'All-time' : 
-                         period === 'month' ? 'Månad' : 'Vecka'}
-                    </button>
-                ))}
+            <div className="filter-section">
+                <div className="filter-buttons">
+                    {(['all', 'month', 'week'] as const).map((period) => (
+                        <button
+                            key={period}
+                            onClick={() => setTimeFrame(period)}
+                            className={`category-btn ${timeFrame === period ? 'active' : ''}`}
+                        >
+                            {period === 'all' ? 'All-time' : 
+                             period === 'month' ? 'Månad' : 'Vecka'}
+                        </button>
+                    ))}
+                </div>
             </div>
 
-            <h2 style={{ textAlign: 'center', marginBottom: '20px', color: 'var(--dark-gray)' }}>
+            <h2 className="section-title" style={{ textAlign: 'center' }}>
                 {getTimeFrameText()}
             </h2>
 
             {leaderboard.length === 0 ? (
-                <div className="card" style={{ textAlign: 'center' }}>
-                    <p style={{ color: 'var(--medium-gray)' }}>
-                        Inga resultat finns ännu för denna period.
-                    </p>
+                <div className="card empty-state">
+                    <p>Inga resultat finns ännu för denna period.</p>
                 </div>
             ) : (
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                <div className="leaderboard-list">
                     {leaderboard.map((entry, index) => (
                         <div 
                             key={entry.userId}
-                            className="card"
-                            style={{
-                                display: 'flex',
-                                alignItems: 'center',
-                                gap: '20px',
-                                padding: '20px',
-                                background: index < 3 
-                                    ? `linear-gradient(135deg, ${
-                                        index === 0 ? '#ffd700, #ffed4e' :
-                                        index === 1 ? '#c0c0c0, #e8e8e8' :
-                                        '#cd7f32, #daa520'
-                                    })` 
-                                    : 'var(--white)',
-                                color: index < 3 ? 'var(--black)' : 'inherit',
-                                border: index < 3 ? '2px solid var(--primary-red)' : undefined
-                            }}
+                            className={`card leaderboard-entry ${index < 3 ? 'leaderboard-podium' : ''}`}
+                            data-rank={index + 1}
                         >
                             {/* Rank */}
-                            <div style={{ 
-                                fontSize: '1.5rem', 
-                                fontWeight: 'bold',
-                                minWidth: '50px',
-                                textAlign: 'center'
-                            }}>
+                            <div className="leaderboard-rank">
                                 {getRankIcon(index + 1)}
                             </div>
 
                             {/* Användarinfo */}
-                            <div style={{ flex: 1 }}>
-                                <h3 style={{ margin: '0 0 5px 0' }}>
+                            <div className="leaderboard-user">
+                                <h3 className="leaderboard-name">
                                     {entry.userDisplayName}
                                 </h3>
-                                <p style={{ 
-                                    margin: 0, 
-                                    color: index < 3 ? 'rgba(0,0,0,0.7)' : 'var(--medium-gray)',
-                                    fontSize: '0.9rem'
-                                }}>
+                                <p className="leaderboard-service">
                                     Tjänstenummer: {entry.serviceNumber}
                                 </p>
                             </div>
 
                             {/* Statistik */}
-                            <div style={{ 
-                                display: 'grid', 
-                                gridTemplateColumns: 'repeat(3, 1fr)',
-                                gap: '20px',
-                                textAlign: 'center',
-                                minWidth: '300px'
-                            }}>
-                                <div>
-                                    <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                            <div className="leaderboard-stats">
+                                <div className="leaderboard-stat">
+                                    <div className="stat-value">
                                         {entry.totalScore}
                                     </div>
-                                    <div style={{ 
-                                        fontSize: '0.8rem', 
-                                        color: index < 3 ? 'rgba(0,0,0,0.7)' : 'var(--medium-gray)'
-                                    }}>
+                                    <div className="stat-label">
                                         Totalpoäng
                                     </div>
                                 </div>
                                 
-                                <div>
-                                    <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                                <div className="leaderboard-stat">
+                                    <div className="stat-value">
                                         {entry.completedQuizzes}
                                     </div>
-                                    <div style={{ 
-                                        fontSize: '0.8rem', 
-                                        color: index < 3 ? 'rgba(0,0,0,0.7)' : 'var(--medium-gray)'
-                                    }}>
+                                    <div className="stat-label">
                                         Quiz
                                     </div>
                                 </div>
                                 
-                                <div>
-                                    <div style={{ fontSize: '1.5rem', fontWeight: 'bold' }}>
+                                <div className="leaderboard-stat">
+                                    <div className="stat-value">
                                         {Math.round(entry.averageScore)}%
                                     </div>
-                                    <div style={{ 
-                                        fontSize: '0.8rem', 
-                                        color: index < 3 ? 'rgba(0,0,0,0.7)' : 'var(--medium-gray)'
-                                    }}>
+                                    <div className="stat-label">
                                         Snitt
                                     </div>
                                 </div>
@@ -192,23 +144,18 @@ const Leaderboard: React.FC = () => {
             )}
 
             {/* Info om poängsystem */}
-            <div className="card" style={{ marginTop: '30px', textAlign: 'center' }}>
-                <h3 style={{ marginBottom: '15px' }}>📈 Hur fungerar poängsystemet?</h3>
-                <div style={{ 
-                    display: 'grid', 
-                    gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', 
-                    gap: '15px',
-                    textAlign: 'left'
-                }}>
-                    <div>
+            <div className="card info-card">
+                <h3 className="info-title">📈 Hur fungerar poängsystemet?</h3>
+                <div className="info-grid">
+                    <div className="info-item">
                         <strong>Poäng per quiz:</strong><br />
                         Antal rätta svar × frågans svårighetsgrad
                     </div>
-                    <div>
+                    <div className="info-item">
                         <strong>Svårighetsgrader:</strong><br />
                         Lätt: 1p | Medium: 2p | Svår: 3p
                     </div>
-                    <div>
+                    <div className="info-item">
                         <strong>Uppdatering:</strong><br />
                         Leaderboard uppdateras i realtid
                     </div>

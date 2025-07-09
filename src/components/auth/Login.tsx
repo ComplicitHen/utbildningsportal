@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { loginUser } from '../../services/auth';
+import { loginUser, onAuthStateChanged } from '../../services/auth';
+import { User } from '../../types';
 
 const Login: React.FC = () => {
     const [email, setEmail] = useState('');
@@ -9,6 +10,18 @@ const Login: React.FC = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
+    // Lyssna på auth-state ändringar för att navigera när användaren är inloggad
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged((user: User | null) => {
+            if (user && !loading) {
+                // Om användaren är inloggad och vi inte håller på att logga in, navigera till dashboard
+                navigate('/dashboard');
+            }
+        });
+
+        return () => unsubscribe();
+    }, [navigate, loading]);
+
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
         setError('');
@@ -16,12 +29,13 @@ const Login: React.FC = () => {
         
         try {
             await loginUser(email, password);
-            navigate('/dashboard');
+            // Ta bort direkt navigering - låt auth-state listener hantera det
+            // navigate('/dashboard');
         } catch (err: any) {
             setError(err.message || 'Felaktig e-post eller lösenord');
-        } finally {
             setLoading(false);
         }
+        // Loading state kommer att sättas till false av auth-state listener
     };
 
     return (

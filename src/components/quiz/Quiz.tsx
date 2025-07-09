@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { DataService } from '../../services/dataService';
+import { InventoryQuizService } from '../../services/inventoryQuizService';
 import { FirebaseService } from '../../services/firebaseService';
 import { Quiz as QuizType, User, QuizResult } from '../../types';
 import QuizQuestion from './QuizQuestion';
@@ -21,16 +22,25 @@ const Quiz: React.FC<QuizProps> = ({ user }) => {
     const [selectedAnswers, setSelectedAnswers] = useState<number[]>([]);
     const [loading, setLoading] = useState(true);
 
-    const questionCountOptions = [10, 20, 30, 50, 100];
+    const questionCountOptions = [10, 20, 30, 50, 100, 200];
 
     useEffect(() => {
         if (areaId && quizId) {
-            const foundQuiz = DataService.getQuiz(areaId, quizId);
-            setQuiz(foundQuiz || null);
-            if (foundQuiz) {
-                // Sätt standardvärde baserat på användarens preferenser eller 20
-                const defaultCount = user.quizSettings?.preferredQuestionCount || 20;
-                setSelectedQuestionCount(Math.min(defaultCount, foundQuiz.questions.length));
+            // Kontrollera om det är ett dynamiskt inventarie-quiz
+            if (quizId === 'inventory-mega-quiz') {
+                // Skapa ett dynamiskt quiz med standardinställningar
+                const dynamicQuiz = InventoryQuizService.generateInventoryQuiz(50);
+                setQuiz(dynamicQuiz);
+                const defaultCount = user.quizSettings?.preferredQuestionCount || 50;
+                setSelectedQuestionCount(Math.min(defaultCount, 200)); // Max 200 frågor från inventariet
+            } else {
+                const foundQuiz = DataService.getQuiz(areaId, quizId);
+                setQuiz(foundQuiz || null);
+                if (foundQuiz) {
+                    // Sätt standardvärde baserat på användarens preferenser eller 20
+                    const defaultCount = user.quizSettings?.preferredQuestionCount || 20;
+                    setSelectedQuestionCount(Math.min(defaultCount, foundQuiz.questions.length));
+                }
             }
         }
         setLoading(false);
@@ -39,9 +49,19 @@ const Quiz: React.FC<QuizProps> = ({ user }) => {
     const startQuiz = (questionCount: number) => {
         if (!quiz) return;
         
-        // Blanda frågorna och ta rätt antal
-        const shuffledQuestions = [...quiz.questions].sort(() => Math.random() - 0.5);
-        const selectedQuestions = shuffledQuestions.slice(0, questionCount);
+        let selectedQuestions;
+        
+        // Kontrollera om det är ett dynamiskt inventarie-quiz
+        if (quizId === 'inventory-mega-quiz') {
+            // Generera nya frågor varje gång
+            const dynamicQuiz = InventoryQuizService.generateInventoryQuiz(questionCount);
+            selectedQuestions = dynamicQuiz.questions;
+            setQuiz(dynamicQuiz); // Uppdatera quiz med nya frågor
+        } else {
+            // Blanda frågorna och ta rätt antal för vanliga quiz
+            const shuffledQuestions = [...quiz.questions].sort(() => Math.random() - 0.5);
+            selectedQuestions = shuffledQuestions.slice(0, questionCount);
+        }
         
         setQuizQuestions(selectedQuestions);
         setSelectedAnswers(new Array(selectedQuestions.length).fill(-1));
