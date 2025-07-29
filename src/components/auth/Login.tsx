@@ -39,50 +39,55 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div className="form-container">
-            <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-                <h1 style={{ color: '#667eea', fontSize: '2.5rem' }}>🔥</h1>
-                <h2 style={{ color: '#333', marginBottom: '10px' }}>Brandmannutbildning</h2>
-                <p style={{ color: '#666' }}>Logga in för att fortsätta din utbildning</p>
-            </div>
-            
-            {error && <div className="error-message">{error}</div>}
-            
-            <form onSubmit={handleLogin}>
-                <div className="form-group">
-                    <label>E-post:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        disabled={loading}
-                        placeholder="din@email.com"
-                    />
+        <div className="login-page">
+            <div className="login-container">
+                <div className="login-header">
+                    <div className="logo">
+                        <span className="fire-icon">🔥</span>
+                        <h1>Brandmannutbildning</h1>
+                    </div>
+                    <p className="subtitle">RSG - Räddningstjänsten Storgöteborg</p>
                 </div>
-                <div className="form-group">
-                    <label>Lösenord:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        disabled={loading}
-                        placeholder="Ditt lösenord"
-                    />
+
+                <div className="login-forms">
+                    <div className="form-container active">
+                        <h2>Logga in</h2>
+                        {error && <div className="error-message">{error}</div>}
+                        
+                        <form onSubmit={handleLogin}>
+                            <div className="input-group">
+                                <label htmlFor="email">E-postadress</label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                    disabled={loading}
+                                />
+                            </div>
+                            <div className="input-group">
+                                <label htmlFor="password">Lösenord</label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                    disabled={loading}
+                                />
+                            </div>
+                            <button type="submit" className="btn-primary" disabled={loading}>
+                                {loading ? 'Loggar in...' : 'Logga in'}
+                            </button>
+                        </form>
+                        
+                        <p className="form-switch">
+                            Har du inget konto? {' '}
+                            <Link to="/register">Registrera dig här</Link>
+                        </p>
+                    </div>
                 </div>
-                <button type="submit" className="btn" disabled={loading}>
-                    {loading ? 'Loggar in...' : 'Logga in'}
-                </button>
-            </form>
-            
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                <p style={{ color: '#666' }}>
-                    Har du inget konto? {' '}
-                    <Link to="/register" style={{ color: '#667eea', textDecoration: 'none' }}>
-                        Registrera dig här
-                    </Link>
-                </p>
             </div>
         </div>
     );

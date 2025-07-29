@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Header from './components/common/Header';
 import Navigation from './components/common/Navigation';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
@@ -47,60 +46,55 @@ const App: React.FC = () => {
   return (
     <Router>
       <div className="app">
-        {authState.user && <Header user={authState.user} />}
-        <div className="app-content">
-          {authState.user && <Navigation />}
-          <main className="main-content">
-            <Routes>
-              <Route 
-                path="/" 
-                element={authState.user ? <Navigate to="/dashboard" /> : <Login />} 
-              />
-              <Route 
-                path="/login" 
-                element={authState.user ? <Navigate to="/dashboard" /> : <Login />} 
-              />
-              <Route 
-                path="/register" 
-                element={authState.user ? <Navigate to="/dashboard" /> : <Register />} 
-              />
-              
-              {/* Skyddade rutter */}
-              <Route 
-                path="/dashboard" 
-                element={authState.user ? <Dashboard user={authState.user} /> : <Navigate to="/login" />} 
-              />
-              <Route 
-                path="/training-areas" 
-                element={authState.user ? <TrainingAreas /> : <Navigate to="/login" />} 
-              />
-              <Route 
-                path="/leaderboard" 
-                element={authState.user ? <Leaderboard /> : <Navigate to="/login" />} 
-              />
-              <Route 
-                path="/profile" 
-                element={authState.user ? <Profile user={authState.user} /> : <Navigate to="/login" />} 
-              />
-              <Route 
-                path="/flashcards/:areaId/:deckId" 
-                element={authState.user ? <FlashcardDeck user={authState.user} /> : <Navigate to="/login" />} 
-              />
-              <Route 
-                path="/quiz/:areaId/:quizId" 
-                element={authState.user ? <Quiz user={authState.user} /> : <Navigate to="/login" />} 
-              />
-              <Route 
-                path="/scenarios/:areaId/:scenarioId" 
-                element={authState.user ? <ScenarioTraining user={authState.user} /> : <Navigate to="/login" />} 
-              />
-              <Route 
-                path="/samband-quiz" 
-                element={authState.user ? <SambandsQuiz /> : <Navigate to="/login" />} 
-              />
-            </Routes>
-          </main>
-        </div>
+        {authState.user && <Navigation />}
+        <Routes>
+          <Route 
+            path="/" 
+            element={authState.user ? <Navigate to="/dashboard" /> : <Login />} 
+          />
+          <Route 
+            path="/login" 
+            element={authState.user ? <Navigate to="/dashboard" /> : <Login />} 
+          />
+          <Route 
+            path="/register" 
+            element={authState.user ? <Navigate to="/dashboard" /> : <Register />} 
+          />
+          
+          {/* Skyddade rutter */}
+          <Route 
+            path="/dashboard" 
+            element={authState.user ? <Dashboard user={authState.user} /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/training-areas" 
+            element={authState.user ? <TrainingAreas /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/leaderboard" 
+            element={authState.user ? <Leaderboard /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/profile" 
+            element={authState.user ? <Profile user={authState.user} /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/flashcards/:areaId/:deckId" 
+            element={authState.user ? <FlashcardDeck user={authState.user} /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/quiz/:areaId/:quizId" 
+            element={authState.user ? <Quiz user={authState.user} /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/scenarios/:areaId/:scenarioId" 
+            element={authState.user ? <ScenarioTraining user={authState.user} /> : <Navigate to="/login" />} 
+          />
+          <Route 
+            path="/samband-quiz" 
+            element={authState.user ? <SambandsQuiz /> : <Navigate to="/login" />} 
+          />
+        </Routes>
       </div>
     </Router>
   );

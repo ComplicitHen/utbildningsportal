@@ -39,84 +39,97 @@ const Register: React.FC = () => {
     };
 
     return (
-        <div className="form-container">
-            <div style={{ textAlign: 'center', marginBottom: '30px' }}>
-                <h1 style={{ color: '#667eea', fontSize: '2.5rem' }}>🔥</h1>
-                <h2 style={{ color: '#333', marginBottom: '10px' }}>Skapa konto</h2>
-                <p style={{ color: '#666' }}>Registrera dig för att börja din brandmanutbildning</p>
-            </div>
-            
-            {error && <div className="error-message">{error}</div>}
-            
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label>Namn:</label>
-                    <input
-                        type="text"
-                        value={displayName}
-                        onChange={(e) => setDisplayName(e.target.value)}
-                        disabled={loading}
-                        placeholder="Ditt namn"
-                    />
+        <div className="login-page">
+            <div className="login-container">
+                <div className="login-header">
+                    <div className="brand">
+                        <div className="brand-icon">🔥</div>
+                        <h1>Brandmanutbildning</h1>
+                    </div>
+                    <h2>Skapa nytt konto</h2>
+                    <p>Registrera dig för att börja din brandmanutbildning</p>
                 </div>
-                <div className="form-group">
-                    <label>Tjänstenummer:</label>
-                    <input
-                        type="text"
-                        value={serviceNumber}
-                        onChange={(e) => setServiceNumber(e.target.value)}
-                        disabled={loading}
-                        placeholder="Ex. 761"
-                        pattern="[0-9]*"
-                        title="Endast siffror tillåtna"
-                    />
+                
+                {error && <div className="error-message">{error}</div>}
+                
+                <form onSubmit={handleSubmit} className="login-form">
+                    <div className="form-group">
+                        <label htmlFor="displayName">Namn</label>
+                        <input
+                            id="displayName"
+                            type="text"
+                            value={displayName}
+                            onChange={(e) => setDisplayName(e.target.value)}
+                            disabled={loading}
+                            placeholder="Ditt namn"
+                            required
+                        />
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="serviceNumber">Tjänstenummer</label>
+                        <input
+                            id="serviceNumber"
+                            type="text"
+                            value={serviceNumber}
+                            onChange={(e) => setServiceNumber(e.target.value)}
+                            disabled={loading}
+                            placeholder="Ex. 761"
+                            pattern="[0-9]*"
+                            title="Endast siffror tillåtna"
+                        />
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="email">E-postadress</label>
+                        <input
+                            id="email"
+                            type="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            required
+                            disabled={loading}
+                            placeholder="din@email.com"
+                        />
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="password">Lösenord</label>
+                        <input
+                            id="password"
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            disabled={loading}
+                            placeholder="Minst 6 tecken"
+                            minLength={6}
+                        />
+                    </div>
+                    
+                    <div className="form-group">
+                        <label htmlFor="confirmPassword">Bekräfta lösenord</label>
+                        <input
+                            id="confirmPassword"
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required
+                            disabled={loading}
+                            placeholder="Upprepa lösenordet"
+                        />
+                    </div>
+                    
+                    <button type="submit" className="login-btn" disabled={loading}>
+                        {loading ? 'Registrerar...' : 'Skapa konto'}
+                    </button>
+                </form>
+                
+                <div className="login-footer">
+                    <p>
+                        Har du redan ett konto? <Link to="/login">Logga in här</Link>
+                    </p>
                 </div>
-                <div className="form-group">
-                    <label>E-post:</label>
-                    <input
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        required
-                        disabled={loading}
-                        placeholder="din@email.com"
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Lösenord:</label>
-                    <input
-                        type="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        disabled={loading}
-                        placeholder="Minst 6 tecken"
-                        minLength={6}
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Bekräfta lösenord:</label>
-                    <input
-                        type="password"
-                        value={confirmPassword}
-                        onChange={(e) => setConfirmPassword(e.target.value)}
-                        required
-                        disabled={loading}
-                        placeholder="Upprepa lösenordet"
-                    />
-                </div>
-                <button type="submit" className="btn" disabled={loading}>
-                    {loading ? 'Registrerar...' : 'Skapa konto'}
-                </button>
-            </form>
-            
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                <p style={{ color: '#666' }}>
-                    Har du redan ett konto? {' '}
-                    <Link to="/login" style={{ color: '#667eea', textDecoration: 'none' }}>
-                        Logga in här
-                    </Link>
-                </p>
             </div>
         </div>
     );

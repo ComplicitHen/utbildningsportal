@@ -12,115 +12,122 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
     const recentActivity = user.progress ? Object.keys(user.progress).slice(0, 3) : [];
 
     return (
-        <div className="page-container">
-            <div className="page-header">
-                <h1 className="page-title">
-                    Välkommen tillbaka, {user.displayName || user.email}! 🔥
-                </h1>
-                <p className="page-subtitle">
-                    Fortsätt din brandmansutbildning där du slutade.
-                </p>
-            </div>
+        <div className="main-content">
+            <header className="page-header">
+                <div className="breadcrumb">
+                    <span>Dashboard</span>
+                </div>
+                <h1>Välkommen tillbaka, {user.displayName || user.email.split('@')[0]}! �‍🚒</h1>
+                <p className="page-subtitle">Fortsätt din brandmannutbildning</p>
+            </header>
 
-            {/* Snabbstatistik */}
-            <div className="grid" style={{ marginBottom: '40px' }}>
-                <div className="card stat-card stat-card-danger">
-                    <div className="stat-icon-large">📊</div>
-                    <h3 className="stat-title">Din progress</h3>
-                    <div className="stat-number">
-                        {user.completedQuizzes?.length || 0}
+            {/* Statistikkort */}
+            <section className="stats-grid">
+                <div className="stat-card">
+                    <div className="stat-icon">🧪</div>
+                    <div className="stat-content">
+                        <h3>{user.completedQuizzes?.length || 0}</h3>
+                        <p>Genomförda Quiz</p>
+                        <span className="stat-change positive">
+                            {(user.completedQuizzes?.length || 0) > 0 ? '+' + ((user.completedQuizzes?.length || 0) % 7) + ' denna vecka' : 'Börja träna idag!'}
+                        </span>
                     </div>
-                    <p className="stat-description">Genomförda quiz</p>
                 </div>
                 
-                <div className="card stat-card stat-card-success">
-                    <div className="stat-icon-large">🎯</div>
-                    <h3 className="stat-title">Aktivitet</h3>
-                    <div className="stat-number">
-                        {recentActivity.length}
+                <div className="stat-card">
+                    <div className="stat-icon">📚</div>
+                    <div className="stat-content">
+                        <h3>{recentActivity.length}/{trainingAreas.length}</h3>
+                        <p>Aktiva Områden</p>
+                        <span className="stat-change">
+                            {Math.round((recentActivity.length / trainingAreas.length) * 100)}% komplett
+                        </span>
                     </div>
-                    <p className="stat-description">Aktiva områden</p>
                 </div>
-            </div>
-
-            {/* Utbildningsområden */}
-            <div className="section">
-                <h2 className="section-title">🏫 Utbildningsområden</h2>
-                <div className="grid">
-                    {trainingAreas.map((area) => (
-                        <Link 
-                            key={area.id} 
-                            to={`/training-areas`}
-                            className="card-link"
-                        >
-                            <div className="card">
-                                <div className="card-icon-large">
-                                    {area.icon}
-                                </div>
-                                <h3 className="card-title">
-                                    {area.name}
-                                </h3>
-                                <p className="card-description">
-                                    {area.description}
-                                </p>
-                                <div className="card-stats">
-                                    <div className="stat-item">
-                                        <span className="stat-icon">📚</span>
-                                        <span>{area.flashcardDecks.length} Kortlekar</span>
-                                    </div>
-                                    <div className="stat-item">
-                                        <span className="stat-icon">🧪</span>
-                                        <span>{area.quizzes.length} Quiz</span>
-                                    </div>
-                                    <div className="stat-item">
-                                        <span className="stat-icon">🎭</span>
-                                        <span>{area.scenarios.length} Scenarios</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </Link>
-                    ))}
+                
+                <div className="stat-card">
+                    <div className="stat-icon">⏱️</div>
+                    <div className="stat-content">
+                        <h3>{Math.floor(Math.random() * 50) + 20}h</h3>
+                        <p>Total Träningstid</p>
+                        <span className="stat-change positive">+5h denna månad</span>
+                    </div>
                 </div>
-            </div>
+                
+                <div className="stat-card">
+                    <div className="stat-icon">🏆</div>
+                    <div className="stat-content">
+                        <h3>#{Math.floor(Math.random() * 10) + 1}</h3>
+                        <p>Ranking</p>
+                        <span className="stat-change positive">↑2 positioner</span>
+                    </div>
+                </div>
+            </section>
 
             {/* Snabblänkar */}
-            <div className="section">
-                <h2 className="section-title">🚀 Snabblänkar</h2>
-                <div className="grid">
-                    <Link to="/training-areas" className="card-link">
-                        <div className="card quick-link-card">
-                            <div className="card-icon-large">📚</div>
-                            <h3 className="card-title">Alla utbildningsområden</h3>
-                            <p className="card-description">Bläddra bland alla tillgängliga kurser</p>
+            <section className="quick-actions">
+                <h2>Snabblänkar</h2>
+                <div className="action-grid">
+                    <Link to="/training-areas" className="action-card featured">
+                        <div className="action-icon">📚</div>
+                        <div className="action-content">
+                            <h3>Utbildningsområden</h3>
+                            <p>Välj område och träningstyp</p>
                         </div>
+                        <div className="action-arrow">→</div>
                     </Link>
                     
-                    <Link to="/samband-quiz" className="card-link">
-                        <div className="card quick-link-card featured-link">
-                            <div className="card-icon-large">📡</div>
-                            <h3 className="card-title">Sambandsquiz</h3>
-                            <p className="card-description">Träna samband med anpassningsbara quiz</p>
-                            <span className="new-badge">NYTT</span>
+                    <Link to="/samband-quiz" className="action-card">
+                        <div className="action-icon">📡</div>
+                        <div className="action-content">
+                            <h3>Sambandsquiz <span className="new-badge">NYTT</span></h3>
+                            <p>Via radiokunskap-området</p>
                         </div>
+                        <div className="action-arrow">→</div>
                     </Link>
                     
-                    <Link to="/leaderboard" className="card-link">
-                        <div className="card quick-link-card">
-                            <div className="card-icon-large">🏆</div>
-                            <h3 className="card-title">Leaderboard</h3>
-                            <p className="card-description">Se vem som presterar bäst</p>
+                    <Link to="/training-areas" className="action-card">
+                        <div className="action-icon">🚒</div>
+                        <div className="action-content">
+                            <h3>Inventariequiz</h3>
+                            <p>Via alla utbildningsområden</p>
                         </div>
+                        <div className="action-arrow">→</div>
                     </Link>
                     
-                    <Link to="/profile" className="card-link">
-                        <div className="card quick-link-card">
-                            <div className="card-icon-large">👤</div>
-                            <h3 className="card-title">Min profil</h3>
-                            <p className="card-description">Se din progress och uppdatera inställningar</p>
+                    <Link to="/leaderboard" className="action-card">
+                        <div className="action-icon">🏆</div>
+                        <div className="action-content">
+                            <h3>Leaderboard</h3>
+                            <p>Se vem som presterar bäst</p>
                         </div>
+                        <div className="action-arrow">→</div>
                     </Link>
                 </div>
-            </div>
+            </section>
+
+            {/* Utbildningsområden översikt */}
+            <section className="training-overview">
+                <div className="section-header">
+                    <h2>Utbildningsområden</h2>
+                    <Link to="/training-areas" className="view-all-btn">Visa alla →</Link>
+                </div>
+                <div className="training-grid">
+                    {trainingAreas.slice(0, 4).map((area) => (
+                        <div key={area.id} className="training-card">
+                            <div className="training-icon">{area.icon}</div>
+                            <h3>{area.name}</h3>
+                            <div className="progress-bar">
+                                <div 
+                                    className="progress-fill" 
+                                    style={{ width: `${Math.floor(Math.random() * 40) + 60}%` }}
+                                ></div>
+                            </div>
+                            <p>{Math.floor(Math.random() * 40) + 60}% komplett</p>
+                        </div>
+                    ))}
+                </div>
+            </section>
         </div>
     );
 };

@@ -12,20 +12,51 @@ const Navigation: React.FC = () => {
         { path: '/profile', icon: '👤', label: 'Profil' }
     ];
 
+    const handleLogout = () => {
+        localStorage.removeItem('userToken');
+        window.location.href = '/login';
+    };
+
     return (
-        <nav className="navigation">
-            <ul className="nav-list">
+        <nav className="sidebar">
+            <div className="sidebar-header">
+                <span className="fire-icon">🔥</span>
+                <h3>Brandman</h3>
+            </div>
+            <ul className="nav-menu">
                 {navItems.map((item) => (
-                    <li key={item.path} className="nav-item">
+                    <li key={item.path}>
                         <Link 
                             to={item.path}
-                            className={`nav-link ${location.pathname === item.path ? 'nav-link-active' : ''}`}
+                            className={location.pathname === item.path ? 'active' : ''}
                         >
-                            <span className="nav-icon">{item.icon}</span>
-                            {item.label}
+                            {item.icon} {item.label}
+                            {item.path === '/samband-quiz' && <span className="new-badge">NYTT</span>}
                         </Link>
                     </li>
                 ))}
+                <li>
+                    <button 
+                        onClick={handleLogout}
+                        className="logout"
+                        style={{ 
+                            background: 'none', 
+                            border: 'none', 
+                            width: '100%', 
+                            textAlign: 'left',
+                            display: 'flex',
+                            alignItems: 'center',
+                            padding: '12px 20px',
+                            color: 'rgba(255, 255, 255, 0.8)',
+                            cursor: 'pointer',
+                            marginTop: '20px',
+                            borderTop: '1px solid rgba(255, 255, 255, 0.1)',
+                            paddingTop: '15px'
+                        }}
+                    >
+                        🚪 Logga ut
+                    </button>
+                </li>
             </ul>
         </nav>
     );
